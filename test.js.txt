@@ -1,0 +1,30 @@
+const { Innertube } = require('youtubei.js');
+
+async function test() {
+    try {
+        console.log('Connecting to YouTube...');
+
+        const youtube = await Innertube.create();
+
+        console.log('Connected!');
+
+        const search = await youtube.search('Shape of You Ed Sheeran');
+
+        console.log('\nSearch results:');
+
+        for (let i = 0; i < Math.min(5, search.videos.length); i++) {
+            console.log(
+                i + 1,
+                search.videos[i].title,
+                '|',
+                search.videos[i].id
+            );
+        }
+
+    } catch (error) {
+        console.error('\nERROR:');
+        console.error(error);
+    }
+}
+
+test();
